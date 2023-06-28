@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shayari App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .form-container input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .result-container {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Shayari App</h1>
+
+  <div class="form-container">
+    <input type="text" id="keywordInput" placeholder="Enter a keyword">
+    <button onclick="generateShayari()">Generate Shayari</button>
+  </div>
+
+  <div class="result-container">
+    <p id="shayariResult"></p>
+  </div>
+
+  <script>
+    async function generateShayari() {
+      const keywordInput = document.getElementById('keywordInput');
+      const shayariResult = document.getElementById('shayariResult');
+      
+      const response = await fetch(`https://localhost:3000/generate-shayari?keyword=${keywordInput.value}`);
+
+      const data = await response.json();
+      shayariResult.textContent = data.shayari;
+    }
+  </script>
+</body>
+</html>
